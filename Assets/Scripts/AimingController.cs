@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class AimingController : MonoBehaviour
 {
-    public float rotationSpeed = 100f;
-    public float minRotation = -70f; // Minimum rotation angle
-    public float maxRotation = 80f; // Maximum rotation angle
+    [SerializeField] private float rotationSpeed = 100f;
+    [SerializeField] private float minRotation = -70f; 
+    [SerializeField] private float maxRotation = 80f; 
+    [SerializeField] private float currentRotation = 0f; 
 
-    private float currentRotation = 0f; // Store the current rotation angle
-
-    void Update()
+    private void Update()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
 
