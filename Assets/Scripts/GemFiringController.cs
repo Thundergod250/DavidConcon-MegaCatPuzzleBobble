@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class GemFiringController : MonoBehaviour
 {
-    public UnityEvent EvtGemFired { get; } 
+    [HideInInspector] public UnityEvent EvtGemFired; 
     [SerializeField] private float fireForce = 10f;
     private GameObject currentGem; 
 

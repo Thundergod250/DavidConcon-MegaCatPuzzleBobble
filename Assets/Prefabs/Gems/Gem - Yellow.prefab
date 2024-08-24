@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4546745316132012955}
   - component: {fileID: 4546745316132012953}
   - component: {fileID: 5427392177353040361}
+  - component: {fileID: -4496328630235526570}
   m_Layer: 0
   m_Name: Gem - Yellow
   m_TagString: Untagged
@@ -123,3 +124,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &-4496328630235526570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4546745316132012956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98593c05e06084247b70072711944518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gemType: 5
