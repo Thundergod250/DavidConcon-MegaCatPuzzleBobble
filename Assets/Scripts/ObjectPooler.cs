@@ -7,6 +7,7 @@ public struct ObjectPoolEntry
 {
     public GameObject prefab;
     public int poolSize;
+    public Transform poolParent;
 
     private Queue<GameObject> pool;
 
@@ -17,6 +18,7 @@ public struct ObjectPoolEntry
         {
             GameObject obj = GameObject.Instantiate(prefab);
             obj.SetActive(false);
+            obj.transform.parent = poolParent;
             pool.Enqueue(obj);
         }
     }
@@ -32,6 +34,7 @@ public struct ObjectPoolEntry
         else
         {
             GameObject obj = GameObject.Instantiate(prefab);
+            obj.transform.parent = poolParent;
             return obj;
         }
     }
@@ -39,6 +42,7 @@ public struct ObjectPoolEntry
     public void ReturnObject(GameObject obj)
     {
         obj.SetActive(false);
+        obj.transform.parent = poolParent;
         pool.Enqueue(obj);
     }
 }
@@ -76,8 +80,6 @@ public class ObjectPooler : MonoBehaviour
                 return entry.GetObject();
             }
         }
-
-        Debug.LogWarning("No pool found for prefab: " + prefab.name);
         return null;
     }
 
@@ -91,7 +93,5 @@ public class ObjectPooler : MonoBehaviour
                 return;
             }
         }
-
-        Debug.LogWarning("No pool found for object: " + obj.name);
     }
 }
