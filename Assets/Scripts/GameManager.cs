@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> ToDestroy = new();
     [SerializeField] private float destroyTimerDuration = 0.2f;
     [SerializeField] private int finalSceneIndex = 3;
+    [SerializeField] private GameObject explosionPrefab;
 
     private Coroutine destroyTimerCoroutine;
 
@@ -54,6 +55,11 @@ public class GameManager : MonoBehaviour
         {
             foreach (GameObject gem in ToDestroy)
             {
+                if (explosionPrefab != null)
+                {
+                    Instantiate(explosionPrefab, gem.transform.position, Quaternion.identity);
+                }
+
                 gem.SetActive(false);
             }
         }

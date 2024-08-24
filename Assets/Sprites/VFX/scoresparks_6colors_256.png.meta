@@ -137,7 +137,7 @@ TextureImporter:
         width: 7
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -145,111 +145,6 @@ TextureImporter:
       bones: []
       spriteID: bcd112af3334c154e99815d65a38a383
       internalID: -1061342833
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_1
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 33
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a28ba68e941d54c429fe1d17c724b5f2
-      internalID: -1144407643
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_2
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 33
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 35a16beeb75598d448e44337b0af09c3
-      internalID: 630073843
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_3
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 33
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 003c530446310094ca5eb105d5fec595
-      internalID: -217645051
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_4
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 33
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05593f690e814d340b05bc6dde060657
-      internalID: 154695533
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_5
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 33
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ee8fac3264fede4bace6c5f0f25aff2
-      internalID: 1154421618
       vertices: []
       indices: 
       edges: []
@@ -263,7 +158,7 @@ TextureImporter:
         width: 7
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -271,111 +166,6 @@ TextureImporter:
       bones: []
       spriteID: cdfa8f4450baf014591b8532d173a3fe
       internalID: 2020666397
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_7
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 25
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 584e2087d8e566342b15df3b2c4c1af9
-      internalID: 3207892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_8
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 25
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 26b3e236a597f6547890d36361c2d073
-      internalID: 708231405
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_9
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 25
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7ac249a89c2965d4ca4355502798e38f
-      internalID: -552379748
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_10
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 25
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e95b46c1ac350d4fb9594ec1ce22a9f
-      internalID: -646348194
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_11
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 25
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9bd24e6d0bf88414b8090b02fbd4391f
-      internalID: 102754093
       vertices: []
       indices: 
       edges: []
@@ -389,7 +179,7 @@ TextureImporter:
         width: 7
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -397,111 +187,6 @@ TextureImporter:
       bones: []
       spriteID: f97d01d3fb205ed42b56f8598cf318cd
       internalID: -1317499394
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_13
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 17
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0b95623b27a6d054aa53f22ce08decf1
-      internalID: -697538690
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_14
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 17
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 78a45864a3965514cac8fa78061feffc
-      internalID: 646573613
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_15
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 17
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1aecefd62e8d0e44b044e57da142b56
-      internalID: -804882964
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_16
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 17
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 27e9b9a3d5410ce448a8a426c079a0f0
-      internalID: -1403358609
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_17
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 17
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 30cf9d89fa807054d993ba8feb8a7c43
-      internalID: -848839601
       vertices: []
       indices: 
       edges: []
@@ -515,7 +200,7 @@ TextureImporter:
         width: 7
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -536,7 +221,7 @@ TextureImporter:
         width: 7
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -544,27 +229,6 @@ TextureImporter:
       bones: []
       spriteID: 3363033676b746342a4caf4ae5690500
       internalID: 1411754164
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scoresparks_6colors_256_20
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 9
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a2128130b7c577a459c8205d061caa56
-      internalID: 1072584240
       vertices: []
       indices: 
       edges: []

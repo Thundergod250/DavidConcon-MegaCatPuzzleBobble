@@ -1677,6 +1677,7 @@ MonoBehaviour:
   ToDestroy: []
   destroyTimerDuration: 0.6
   finalSceneIndex: 3
+  explosionPrefab: {fileID: 0}
 --- !u!1 &857487191
 GameObject:
   m_ObjectHideFlags: 0
