@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float destroyTimerDuration = 0.2f;
     public List<GameObject> Gems = new();
     public List<GameObject> ToDestroy = new(); 
-    private GameObject[,] grid;
     private Coroutine destroyTimerCoroutine;
 
     private void Awake()
@@ -62,16 +61,6 @@ public class GameManager : MonoBehaviour
         {
             Gems.Add(gem);
         }
-    }
-
-    public GameObject[,] GetGrid() 
-    {
-        return grid;
-    }
-
-    public void SetGrid(GameObject[,] gridData) 
-    {
-        grid = gridData;
     }
 
     public void EnableTheClosestGrid(Transform transform, int index)

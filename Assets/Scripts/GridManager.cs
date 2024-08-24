@@ -17,7 +17,6 @@ public class GridManager : MonoBehaviour
     {
         grid = new GameObject[rows, columns];
         InitializeGrid();
-        GroupAdjacentGems();
     }
 
     private void InitializeGrid()
@@ -41,37 +40,13 @@ public class GridManager : MonoBehaviour
                 {
                     if (newGem.TryGetComponent(out Gem gem))
                     {
-                        gem.InitializeGems();
+                        gem.RandomizeGemType();
                         
                     }
                 }
                 else
                 {
                     newGem.SetActive(false);
-                }
-            }
-        }
-    }
-
-    private void GroupAdjacentGems()
-    {
-        Dictionary<GemType, List<Vector2Int>> gemGroups = new Dictionary<GemType, List<Vector2Int>>();
-
-        for (int row = 0; row < rows; row++)
-        {
-            for (int column = 0; column < columns; column++)
-            {
-                if (grid[row, column] != null)
-                {
-                    Gem gem = grid[row, column].GetComponent<Gem>();
-                    GemType gemType = gem.GetGemType();
-
-                    if (!gemGroups.ContainsKey(gemType))
-                    {
-                        gemGroups[gemType] = new List<Vector2Int>();
-                    }
-
-                    gemGroups[gemType].Add(new Vector2Int(row, column));
                 }
             }
         }

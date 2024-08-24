@@ -17,13 +17,8 @@ public class Gem : MonoBehaviour
 
     public void RandomizeGemType()
     {
-        indexNumber = Random.Range(0, 6);
-        SetType(indexNumber);
-    }
-
-    public void InitializeGems()
-    {
-        indexNumber = Random.Range(0, 6);
+        int enumLength = System.Enum.GetValues(typeof(GemType)).Length;
+        indexNumber = Random.Range(0, enumLength);
         SetType(indexNumber);
     }
 
