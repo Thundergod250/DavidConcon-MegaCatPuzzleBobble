@@ -10,6 +10,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private float gemSize = 1.0f;
     [SerializeField] private float staggerOffset = 0.5f;
     [SerializeField] private Transform startingPoint;
+    [SerializeField] private Transform ceiling;
 
     private GameObject[,] grid;
 
@@ -35,13 +36,14 @@ public class GridManager : MonoBehaviour
                 GameManager.Instance.AddGem(newGem);
                 newGem.GetComponent<Rigidbody2D>().isKinematic = true;
                 newGem.AddComponent<Snap>();
+                newGem.transform.parent = ceiling; 
 
                 if (row < rows / 2)
                 {
                     if (newGem.TryGetComponent(out Gem gem))
                     {
                         gem.RandomizeGemType();
-                        
+                        gem.RegisterFallOff(); 
                     }
                 }
                 else

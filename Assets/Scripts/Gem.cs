@@ -8,12 +8,17 @@ public class Gem : MonoBehaviour
     [SerializeField] private Sprite[] gemSprites;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private int indexNumber;
-    [SerializeField] private GameObject checkerTrigger;
-    [SerializeField] private Checker checker; 
+    [SerializeField] private Checker checker;
+    [SerializeField] private FallOff fallOff;
     public List<GameObject> groupedGems = new();
 
     public GemType GetGemType() => gemType;
     public int GetIndexNumber() => indexNumber;
+
+    public void RegisterFallOff()
+    {
+        GameManager.Instance.RegisterFallOff(fallOff);
+    }
 
     public void RandomizeGemType()
     {
@@ -27,6 +32,11 @@ public class Gem : MonoBehaviour
         checker.gameObject.SetActive(true);
     }
 
+    public void EnableFallOff()
+    {
+        fallOff.gameObject.SetActive(true);
+    }
+
     public void SetType(int index)
     {
         gemType = (GemType)index;
@@ -36,53 +46,7 @@ public class Gem : MonoBehaviour
     public void Activate(int index)
     {
         SetType(index);
-        AddToGroupedGems(gameObject);
-        checkerTrigger.SetActive(true);
-        SynchronizeGroupedGems(); 
-    }
-
-    public void AddToGroupedGems(GameObject gemObject)
-    {
-        if (!groupedGems.Contains(gemObject))
-        {
-            groupedGems.Add(gemObject);
-        }
-    }
-
-    public void ClearGroupedGems()
-    {
-        groupedGems.Clear();
-    }
-
-    public void DeactivateMatchedGems()
-    {
-        if (groupedGems.Count >= 3)
-        {
-            List<GameObject> gemsToDeactivate = new(groupedGems);
-
-            foreach (GameObject gemObject in gemsToDeactivate)
-            {
-                gemObject.SetActive(false);
-            }
-            ClearGroupedGems();  
-        }
-    }
-
-    public void SynchronizeGroupedGems()
-    {
-        List<GameObject> gemsToCheck = new(groupedGems);
-        foreach (GameObject gemObject in gemsToCheck)
-        {
-            if (gemObject.TryGetComponent(out Gem gemScript))
-            {
-                foreach (GameObject adjacentGem in gemScript.groupedGems)
-                {
-                    if (!groupedGems.Contains(adjacentGem))
-                    {
-                        AddToGroupedGems(adjacentGem);
-                    }
-                }
-            }
-        }
+        checker.gameObject.SetActive(true);
+        //fallOff.gameObject.SetActive(true);
     }
 }

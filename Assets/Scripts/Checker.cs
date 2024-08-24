@@ -9,17 +9,12 @@ public class Checker : MonoBehaviour
     private void OnEnable()
     {
         GameManager.Instance.AddToDestroy(gem.gameObject);
-        StartCoroutine(DisableAfterDelay(0.5f));
+        StartCoroutine(DisableAfterDelay(0.6f));
     }
 
     private void OnDisable()
     {
         StopAllCoroutines(); 
-    }
-
-    private void Start()
-    {
-        gem = GetComponentInParent<Gem>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
