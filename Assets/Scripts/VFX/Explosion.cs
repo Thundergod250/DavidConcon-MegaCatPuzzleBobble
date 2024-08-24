@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    [SerializeField] private Sprite[] sprites; 
+    [SerializeField] private Sprite[] sprites;
     [SerializeField] private float frameRate = 0.1f;
     [SerializeField] private float displayDuration = 0.5f;
 
@@ -21,15 +21,23 @@ public class Explosion : MonoBehaviour
 
     private IEnumerator PlayExplosionAnimation()
     {
-        float totalAnimationTime = frameRate * sprites.Length;
-        float finalSpriteTime = Mathf.Max(0, displayDuration - totalAnimationTime);
-        foreach (Sprite sprite in sprites)
+        float startTime = Time.time;
+        for (int i = 0; i < sprites.Length; i++)
         {
-            spriteRenderer.sprite = sprite;
-            yield return new WaitForSeconds(frameRate);
+            float elapsedTime = Time.time - startTime;
+
+            while (elapsedTime < frameRate * (i + 1) && elapsedTime < displayDuration)
+            {
+                yield return null;
+                elapsedTime = Time.time - startTime;
+            }
+
+            spriteRenderer.sprite = sprites[i];
         }
+
         spriteRenderer.sprite = sprites[sprites.Length - 1];
-        yield return new WaitForSeconds(finalSpriteTime);
+        yield return new WaitForSeconds(displayDuration - (Time.time - startTime));
         gameObject.SetActive(false);
+        ObjectPooler.Instance.ReturnObject(gameObject);
     }
 }
