@@ -1139,6 +1139,7 @@ GameObject:
   - component: {fileID: 1680356616}
   - component: {fileID: 1680356617}
   - component: {fileID: 1680356618}
+  - component: {fileID: 1680356619}
   m_Layer: 0
   m_Name: EndHandle
   m_TagString: Untagged
@@ -1200,6 +1201,23 @@ MonoBehaviour:
   - {fileID: 8507842918777760715, guid: 4cd4e8b290e1777458d55f0455e214df, type: 3}
   - {fileID: 4546745316132012956, guid: 4acc9b8d8e31f3a41b6eb105abb55750, type: 3}
   spawnPoint: {fileID: 1832079874}
+  gemFiringController: {fileID: 1680356619}
+--- !u!114 &1680356619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680356615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70749174b95dd2e4688ca8ca891cc602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EvtGemFired:
+    m_PersistentCalls:
+      m_Calls: []
+  fireForce: 10
 --- !u!1 &1832079873
 GameObject:
   m_ObjectHideFlags: 0
