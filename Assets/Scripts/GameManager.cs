@@ -87,6 +87,10 @@ public class GameManager : MonoBehaviour
         if (closestGem != null)
         {
             closestGem.SetActive(true);
+            if (closestGem.TryGetComponent(out Collider2D collider))
+            {
+                collider.isTrigger = true;
+            }
             closestGem.GetComponent<Gem>().Activate(index);
         }
     }
