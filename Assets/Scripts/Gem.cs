@@ -8,9 +8,19 @@ public class Gem : MonoBehaviour
     [SerializeField] private Sprite[] gemSprites;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private int indexNumber;
-    private int gridRow, gridColumn; // Add these to store the gem's position in the grid
+    [SerializeField] private GameObject checkerTrigger;
+    public List<GameObject> groupedGems = new();
+
+    public GemType GetGemType() => gemType;
+    public int GetIndexNumber() => indexNumber;
 
     public void RandomizeGemType()
+    {
+        indexNumber = Random.Range(0, 6);
+        SetType(indexNumber);
+    }
+
+    public void InitializeGems()
     {
         indexNumber = Random.Range(0, 6);
         SetType(indexNumber);
@@ -25,69 +35,53 @@ public class Gem : MonoBehaviour
     public void Activate(int index)
     {
         SetType(index);
-        CheckMatches();
+        AddToGroupedGems(gameObject);
+        checkerTrigger.SetActive(true);
+        SynchronizeGroupedGems(); 
     }
 
-    public void InitializePosition(int row, int column)
+    public void AddToGroupedGems(GameObject gemObject)
     {
-        gridRow = row;
-        gridColumn = column;
-    }
-
-    private void CheckMatches()
-    {
-        List<Gem> matchedGems = new List<Gem>();
-        FindMatches(matchedGems, gridRow, gridColumn);
-
-        if (matchedGems.Count >= 3)
+        if (!groupedGems.Contains(gemObject))
         {
-            foreach (Gem gem in matchedGems)
-            {
-                gem.gameObject.SetActive(false); // Deactivate the matching gems
-                // Alternatively, you can destroy them if that is your game logic
-                // Destroy(gem.gameObject);
-            }
+            groupedGems.Add(gemObject);
         }
     }
 
-    private void FindMatches(List<Gem> matchedGems, int row, int column)
+    public void ClearGroupedGems()
     {
-        if (matchedGems.Contains(this)) return; // Prevent adding the same gem multiple times
-        matchedGems.Add(this);
-
-        // Get the 2D array of gems from the GameManager
-        GameObject[,] grid = GameManager.Instance.GetGrid();
-
-        // Check all four directions for matches
-        CheckDirection(matchedGems, row, column, 1, 0);  // Right
-        CheckDirection(matchedGems, row, column, -1, 0); // Left
-        CheckDirection(matchedGems, row, column, 0, 1);  // Up
-        CheckDirection(matchedGems, row, column, 0, -1); // Down
+        groupedGems.Clear();
     }
 
-    private void CheckDirection(List<Gem> matchedGems, int row, int column, int rowOffset, int colOffset)
+    public void DeactivateMatchedGems()
     {
-        GameObject[,] grid = GameManager.Instance.GetGrid();
-
-        int newRow = row + rowOffset;
-        int newCol = column + colOffset;
-
-        // Check if the new position is within the grid boundaries
-        if (newRow >= 0 && newRow < grid.GetLength(0) && newCol >= 0 && newCol < grid.GetLength(1))
+        if (groupedGems.Count >= 3)
         {
-            GameObject adjacentGemObject = grid[newRow, newCol];
+            List<GameObject> gemsToDeactivate = new(groupedGems);
 
-            if (adjacentGemObject != null)
+            foreach (GameObject gemObject in gemsToDeactivate)
             {
-                Gem adjacentGem = adjacentGemObject.GetComponent<Gem>();
-                if (adjacentGem != null && adjacentGem.gemType == gemType && !matchedGems.Contains(adjacentGem))
+                gemObject.SetActive(false);
+            }
+            ClearGroupedGems();  
+        }
+    }
+
+    public void SynchronizeGroupedGems()
+    {
+        List<GameObject> gemsToCheck = new(groupedGems);
+        foreach (GameObject gemObject in gemsToCheck)
+        {
+            if (gemObject.TryGetComponent(out Gem gemScript))
+            {
+                foreach (GameObject adjacentGem in gemScript.groupedGems)
                 {
-                    adjacentGem.FindMatches(matchedGems, newRow, newCol);
+                    if (!groupedGems.Contains(adjacentGem))
+                    {
+                        AddToGroupedGems(adjacentGem);
+                    }
                 }
             }
         }
     }
-
-    public GemType GetGemType() => gemType;
-    public int GetIndexNumber() => indexNumber;
 }

@@ -17,7 +17,7 @@ public class GridManager : MonoBehaviour
     {
         grid = new GameObject[rows, columns];
         InitializeGrid();
-        GameManager.Instance.SetGrid(grid); // Pass the grid to GameManager
+        GameManager.Instance.SetGrid(grid); 
     }
 
     private void InitializeGrid()
@@ -30,18 +30,23 @@ public class GridManager : MonoBehaviour
                 float xPosition = column * gemSize + xOffset;
                 float yPosition = -row * gemSize;
                 Vector3 gemPosition = startingPoint.position + new Vector3(xPosition, yPosition, 0);
+
                 GameObject newGem = Instantiate(gemPrefab, gemPosition, Quaternion.identity, transform);
                 grid[row, column] = newGem;
                 GameManager.Instance.AddGem(newGem);
                 newGem.GetComponent<Rigidbody2D>().isKinematic = true;
                 newGem.AddComponent<Snap>();
-                newGem.SetActive(false);
 
-                // Initialize gem's position in the grid
-                Gem gemComponent = newGem.GetComponent<Gem>();
-                if (gemComponent != null)
+                if (row < rows / 2)
                 {
-                    gemComponent.InitializePosition(row, column);
+                    if (newGem.TryGetComponent(out Gem gem))
+                    {
+                        gem.InitializeGems(); 
+                    }
+                }
+                else
+                {
+                    newGem.SetActive(false);
                 }
             }
         }

@@ -30,12 +30,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public GameObject[,] GetGrid() // New method to access the grid
+    public GameObject[,] GetGrid() 
     {
         return grid;
     }
 
-    public void SetGrid(GameObject[,] gridData) // New method to set the grid
+    public void SetGrid(GameObject[,] gridData) 
     {
         grid = gridData;
     }
