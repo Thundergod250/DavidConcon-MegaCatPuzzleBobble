@@ -25,7 +25,6 @@ public class FallOff : MonoBehaviour
         else
         {
             //gem.gameObject.SetActive(false);
-            GameManager.Instance.CheckAllFallOffs();
         }
         /*if (other.TryGetComponent(out Gem otherGem) && otherGem != gem)
         {

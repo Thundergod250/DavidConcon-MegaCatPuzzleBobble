@@ -5,24 +5,29 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     [SerializeField] private GameObject gemPrefab;
-    [SerializeField] private int rows = 8;
-    [SerializeField] private int columns = 15;
     [SerializeField] private float gemSize = 1.0f;
     [SerializeField] private float staggerOffset = 0.5f;
     [SerializeField] private Transform startingPoint;
     [SerializeField] private Transform ceiling;
 
+    [Header("Adjustable Rows")]
+    [Range(4, 7)]
+    [SerializeField] private int activeRows = 4; 
+
+    private const int totalRows = 10; 
+    private const int columns = 15;
+
     private GameObject[,] grid;
 
     private void Start()
     {
-        grid = new GameObject[rows, columns];
+        grid = new GameObject[totalRows, columns];
         InitializeGrid();
     }
 
     private void InitializeGrid()
     {
-        for (int row = 0; row < rows; row++)
+        for (int row = 0; row < totalRows; row++)
         {
             for (int column = 0; column < columns; column++)
             {
@@ -38,11 +43,12 @@ public class GridManager : MonoBehaviour
                 newGem.AddComponent<Snap>();
                 newGem.transform.parent = ceiling; 
 
-                if (row < rows / 2)
+                if (row < activeRows)
                 {
                     if (newGem.TryGetComponent(out Gem gem))
                     {
                         gem.RandomizeGemType();
+                        GameManager.Instance.AddActiveGems(newGem);
                     }
                 }
                 else

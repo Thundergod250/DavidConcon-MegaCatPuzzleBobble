@@ -42,6 +42,7 @@ public class Gem : MonoBehaviour
     {
         SetType(index);
         checker.gameObject.SetActive(true);
+        GameManager.Instance.AddActiveGems(gameObject);
         //fallOff.gameObject.SetActive(true);
     }
 }

@@ -2,51 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public UnityEvent EvtGemExploded; 
     public List<GameObject> Gems = new();
+    public List<GameObject> ActivateGems = new();
     public List<GameObject> ToDestroy = new();
-    public List<GameObject> ToFall = new();
-    public List<FallOff> fallOffCheckers;
     [SerializeField] private float destroyTimerDuration = 0.2f;
-    [SerializeField] private float fallingTimerDuration = 0.6f;
-    
+    [SerializeField] private int finalSceneIndex = 3;
+
     private Coroutine destroyTimerCoroutine;
-    private Coroutine fallTimerCoroutine;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
-        }
-    }
-
-    private void Start()
-    {
-        EvtGemExploded.AddListener(CheckAllFallOffs); 
-    }
-
-    public void RegisterFallOff(FallOff fallOff)
-    {
-        fallOffCheckers.Add(fallOff); 
-    }
-
-    public void CheckAllFallOffs()
-    {
-        foreach(FallOff fallOff in fallOffCheckers)
-        {
-            if (fallOff != null)
-                fallOff.gameObject.SetActive(true); 
         }
     }
 
@@ -63,26 +42,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddToFall(GameObject gem)
-    {
-        if (ToFall != null && gem != null)
-        {
-            ToFall.Add(gem);
-        }
-    }
-
-    public IEnumerator FallTimerToClear()
-    {
-        yield return new WaitForSeconds(fallingTimerDuration);
-        ClearFall();
-    }
-
-    public IEnumerator FallTimerToFall()
-    {
-        yield return new WaitForSeconds(fallingTimerDuration);
-        FallAll();
-    }
-
     private IEnumerator DestroyTimer()
     {
         yield return new WaitForSeconds(destroyTimerDuration);
@@ -96,23 +55,9 @@ public class GameManager : MonoBehaviour
             foreach (GameObject gem in ToDestroy)
             {
                 gem.SetActive(false);
-                EvtGemExploded?.Invoke(); 
             }
         }
         ToDestroy.Clear();
-    }
-
-    public void ClearFall()
-    {
-        ToFall.Clear();
-    }
-
-    public void FallAll()
-    {
-        foreach (GameObject gem in ToFall)
-        {
-            gem.SetActive(false);
-        }
     }
 
     public void AddGem(GameObject gem)
@@ -120,6 +65,45 @@ public class GameManager : MonoBehaviour
         if (Gems != null && gem != null)
         {
             Gems.Add(gem);
+        }
+    }
+
+    public void AddActiveGems(GameObject gem)
+    {
+        if (ActivateGems != null && gem != null)
+        {
+            ActivateGems.Add(gem);
+        }
+    }
+
+    public void CheckActiveGems()
+    {
+        bool hasActiveGems = false;
+
+        foreach (GameObject gem in Gems)
+        {
+            if (gem.activeInHierarchy)
+            {
+                hasActiveGems = true;
+                break;
+            }
+        }
+
+        if (!hasActiveGems)
+        {
+            LoadFinalScene();
+        }
+        else
+        {
+            Debug.Log("Active gems are still present. Cannot proceed to the final scene.");
+        }
+    }
+
+    private void LoadFinalScene()
+    {
+        if (finalSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(finalSceneIndex);
         }
     }
 
