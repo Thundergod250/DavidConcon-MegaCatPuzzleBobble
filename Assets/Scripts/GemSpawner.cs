@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GemSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] gemPrefabs;
+    [SerializeField] private GameObject gemPrefab;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GemFiringController gemFiringController;
 
@@ -30,12 +30,14 @@ public class GemSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-        int randomIndex = Random.Range(0, gemPrefabs.Length);
-        GameObject gem = Instantiate(gemPrefabs[randomIndex], spawnPoint.position, Quaternion.identity);
+        GameObject gem = Instantiate(gemPrefab, spawnPoint.position, Quaternion.identity);
         gem.transform.parent = spawnPoint;
+        gem.GetComponent<Gem>().RandomizeGemType();
 
         if (gemFiringController)
             gemFiringController.SetCurrentGem(gem);
+
+        gem.AddComponent<PlayerGem>(); 
 
         canSpawn = true;
     }

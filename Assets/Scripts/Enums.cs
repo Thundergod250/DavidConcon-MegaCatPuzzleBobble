@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum GemType
-{
-    Blue, 
+{ 
     Brown, 
     Gray,
-    Green,
+    Yellow,
     Red,
-    Yellow
+    Blue, 
+    Green
 }

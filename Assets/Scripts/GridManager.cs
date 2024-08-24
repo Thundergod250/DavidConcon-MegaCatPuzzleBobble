@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] gemPrefabs;  
-    [SerializeField] private int rows = 8;             
-    [SerializeField] private int columns = 10;         
-    [SerializeField] private float gemSize = 1.0f;     
+    [SerializeField] private GameObject gemPrefab;
+    [SerializeField] private int rows = 8;
+    [SerializeField] private int columns = 15;
+    [SerializeField] private float gemSize = 1.0f;
     [SerializeField] private float staggerOffset = 0.5f;
     [SerializeField] private Transform startingPoint;
 
-    private GameObject[,] grid;  
+    private GameObject[,] grid;
 
     private void Start()
     {
-        grid = new GameObject[rows, columns];  
-        InitializeGrid();  
+        grid = new GameObject[rows, columns];
+        InitializeGrid();
+        GameManager.Instance.SetGrid(grid); // Pass the grid to GameManager
     }
 
     private void InitializeGrid()
@@ -29,10 +30,19 @@ public class GridManager : MonoBehaviour
                 float xPosition = column * gemSize + xOffset;
                 float yPosition = -row * gemSize;
                 Vector3 gemPosition = startingPoint.position + new Vector3(xPosition, yPosition, 0);
-                int randomIndex = Random.Range(0, gemPrefabs.Length);
-                GameObject randomGemPrefab = gemPrefabs[randomIndex];
-                GameObject newGem = Instantiate(randomGemPrefab, gemPosition, Quaternion.identity, transform);
+                GameObject newGem = Instantiate(gemPrefab, gemPosition, Quaternion.identity, transform);
                 grid[row, column] = newGem;
+                GameManager.Instance.AddGem(newGem);
+                newGem.GetComponent<Rigidbody2D>().isKinematic = true;
+                newGem.AddComponent<Snap>();
+                newGem.SetActive(false);
+
+                // Initialize gem's position in the grid
+                Gem gemComponent = newGem.GetComponent<Gem>();
+                if (gemComponent != null)
+                {
+                    gemComponent.InitializePosition(row, column);
+                }
             }
         }
     }
