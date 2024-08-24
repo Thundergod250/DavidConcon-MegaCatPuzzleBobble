@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class Checker : MonoBehaviour
 {
-    private Gem gem;
+    [SerializeField] private Gem gem;
+
+    private void OnEnable()
+    {
+        GameManager.Instance.AddToDestroy(gem.gameObject);
+        StartCoroutine(DisableAfterDelay(0.5f));
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines(); 
+    }
 
     private void Start()
     {
@@ -17,23 +28,19 @@ public class Checker : MonoBehaviour
         {
             if (otherGem.GetGemType() == gem.GetGemType() && otherGem != gem)
             {
-                gem.AddToGroupedGems(otherGem.gameObject);
-                otherGem.AddToGroupedGems(gem.gameObject); 
-                gem.SynchronizeGroupedGems();
-                otherGem.SynchronizeGroupedGems();
-                gem.DeactivateMatchedGems();
+                otherGem.EnableChecker();
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private IEnumerator DisableAfterDelay(float delay)
     {
-        if (other.TryGetComponent(out Gem otherGem))
-        {
-            if (otherGem != gem && gem.groupedGems.Contains(otherGem.gameObject))
-            {
-                gem.groupedGems.Remove(otherGem.gameObject);
-            }
-        }
+        yield return new WaitForSeconds(delay);
+        DisableThisObject();
+    }
+
+    private void DisableThisObject()
+    {
+        gameObject.SetActive(false);
     }
 }

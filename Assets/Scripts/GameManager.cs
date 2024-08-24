@@ -6,6 +6,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [SerializeField] private float destroyTimerDuration = 0.2f;
+    public List<GameObject> Gems = new();
+    public List<GameObject> ToDestroy = new(); 
+    private GameObject[,] grid;
+    private Coroutine destroyTimerCoroutine;
+
     private void Awake()
     {
         if (Instance == null)
@@ -19,8 +25,36 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public List<GameObject> Gems = new();
-    private GameObject[,] grid;
+    public void AddToDestroy(GameObject gem)
+    {
+        if (ToDestroy != null && gem != null)
+        {
+            ToDestroy.Add(gem);
+            if (destroyTimerCoroutine != null)
+            {
+                StopCoroutine(destroyTimerCoroutine);
+            }
+            destroyTimerCoroutine = StartCoroutine(DestroyTimer());
+        }
+    }
+
+    private IEnumerator DestroyTimer()
+    {
+        yield return new WaitForSeconds(destroyTimerDuration);
+        ClearToDestroy();
+    }
+
+    public void ClearToDestroy()
+    {
+        if (ToDestroy.Count >= 3)
+        {
+            foreach (GameObject gem in ToDestroy)
+            {
+                gem.SetActive(false);
+            }
+        }
+        ToDestroy.Clear();
+    }
 
     public void AddGem(GameObject gem)
     {

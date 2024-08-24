@@ -17,7 +17,7 @@ public class GridManager : MonoBehaviour
     {
         grid = new GameObject[rows, columns];
         InitializeGrid();
-        GameManager.Instance.SetGrid(grid); 
+        GroupAdjacentGems();
     }
 
     private void InitializeGrid()
@@ -31,7 +31,7 @@ public class GridManager : MonoBehaviour
                 float yPosition = -row * gemSize;
                 Vector3 gemPosition = startingPoint.position + new Vector3(xPosition, yPosition, 0);
 
-                GameObject newGem = Instantiate(gemPrefab, gemPosition, Quaternion.identity, transform);
+                GameObject newGem = Instantiate(gemPrefab, gemPosition, Quaternion.identity);
                 grid[row, column] = newGem;
                 GameManager.Instance.AddGem(newGem);
                 newGem.GetComponent<Rigidbody2D>().isKinematic = true;
@@ -41,12 +41,37 @@ public class GridManager : MonoBehaviour
                 {
                     if (newGem.TryGetComponent(out Gem gem))
                     {
-                        gem.InitializeGems(); 
+                        gem.InitializeGems();
+                        
                     }
                 }
                 else
                 {
                     newGem.SetActive(false);
+                }
+            }
+        }
+    }
+
+    private void GroupAdjacentGems()
+    {
+        Dictionary<GemType, List<Vector2Int>> gemGroups = new Dictionary<GemType, List<Vector2Int>>();
+
+        for (int row = 0; row < rows; row++)
+        {
+            for (int column = 0; column < columns; column++)
+            {
+                if (grid[row, column] != null)
+                {
+                    Gem gem = grid[row, column].GetComponent<Gem>();
+                    GemType gemType = gem.GetGemType();
+
+                    if (!gemGroups.ContainsKey(gemType))
+                    {
+                        gemGroups[gemType] = new List<Vector2Int>();
+                    }
+
+                    gemGroups[gemType].Add(new Vector2Int(row, column));
                 }
             }
         }

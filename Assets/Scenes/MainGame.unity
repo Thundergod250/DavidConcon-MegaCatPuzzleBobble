@@ -674,7 +674,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d6dd3b2e9122b949aeb80de0a72bb30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyTimerDuration: 0.3
   Gems: []
+  ToDestroy: []
 --- !u!1 &919574648
 GameObject:
   m_ObjectHideFlags: 0

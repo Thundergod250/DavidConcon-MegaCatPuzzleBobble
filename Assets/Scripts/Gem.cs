@@ -9,6 +9,7 @@ public class Gem : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private int indexNumber;
     [SerializeField] private GameObject checkerTrigger;
+    [SerializeField] private Checker checker; 
     public List<GameObject> groupedGems = new();
 
     public GemType GetGemType() => gemType;
@@ -24,6 +25,11 @@ public class Gem : MonoBehaviour
     {
         indexNumber = Random.Range(0, 6);
         SetType(indexNumber);
+    }
+
+    public void EnableChecker()
+    {
+        checker.gameObject.SetActive(true);
     }
 
     public void SetType(int index)
