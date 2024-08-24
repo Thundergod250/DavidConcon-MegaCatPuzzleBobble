@@ -43,7 +43,6 @@ public class GridManager : MonoBehaviour
                     if (newGem.TryGetComponent(out Gem gem))
                     {
                         gem.RandomizeGemType();
-                        gem.RegisterFallOff(); 
                     }
                 }
                 else

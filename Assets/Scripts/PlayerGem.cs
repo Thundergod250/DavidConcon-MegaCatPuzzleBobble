@@ -18,7 +18,8 @@ public class PlayerGem : MonoBehaviour
         if (collision.gameObject.GetComponent<Snap>() != null)
         {
             GameManager.Instance.EnableTheClosestGrid(gameObject.transform, indexNumber); 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
     }
 
@@ -27,7 +28,8 @@ public class PlayerGem : MonoBehaviour
         if (collision.gameObject.GetComponent<Snap>() != null)
         {
             GameManager.Instance.EnableTheClosestGrid(gameObject.transform, indexNumber);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
     }
 }

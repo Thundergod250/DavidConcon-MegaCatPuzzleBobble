@@ -15,11 +15,6 @@ public class Gem : MonoBehaviour
     public GemType GetGemType() => gemType;
     public int GetIndexNumber() => indexNumber;
 
-    public void RegisterFallOff()
-    {
-        GameManager.Instance.RegisterFallOff(fallOff);
-    }
-
     public void RandomizeGemType()
     {
         int enumLength = System.Enum.GetValues(typeof(GemType)).Length;
